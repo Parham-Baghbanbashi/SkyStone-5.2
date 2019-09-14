@@ -32,7 +32,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 
 @Autonomous(name="MY First Itriative OP", group="Iterative Opmode")
@@ -43,6 +45,10 @@ public class MyFirstItrativeOP extends OpMode
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftDrive;
     private DcMotor rightDrive;
+    double drive = -gamepad1.left_stick_y;
+    double turn  =  gamepad1.right_stick_x;
+    double leftPower = Range.clip(drive + turn, -1.0, 1.0);;
+    double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -53,6 +59,8 @@ public class MyFirstItrativeOP extends OpMode
 
         leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
         rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
+
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
     }
 
     /*
@@ -75,6 +83,8 @@ public class MyFirstItrativeOP extends OpMode
      */
     @Override
     public void loop() {
+        rightDrive.setPower(rightPower);
+        leftDrive.setPower(leftPower);
 
     }
 
