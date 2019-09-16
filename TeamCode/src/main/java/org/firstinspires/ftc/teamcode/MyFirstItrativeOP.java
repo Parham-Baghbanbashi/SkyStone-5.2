@@ -66,6 +66,14 @@ public class MyFirstItrativeOP extends OpMode
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
+    public void arcadedrive(){
+        double drive = -gamepad1.left_stick_y;
+        double turn  =  gamepad1.right_stick_x;
+        double leftPower = Range.clip(drive + turn, -1.0, 1.0);;
+        double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+        rightDrive.setPower(rightPower);
+        leftDrive.setPower(leftPower);
+    }
     @Override
     public void init_loop() {
     }
@@ -83,8 +91,11 @@ public class MyFirstItrativeOP extends OpMode
      */
     @Override
     public void loop() {
-        rightDrive.setPower(rightPower);
-        leftDrive.setPower(leftPower);
+        arcadedrive();
+        telemetry.addData("left motor throttle indcator", leftDrive);
+        telemetry.addData("right motor throtle incator", rightDrive);
+        telemetry.addData("right power", rightPower);
+        telemetry.addData("left power", leftPower);
 
     }
 
