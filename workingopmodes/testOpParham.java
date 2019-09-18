@@ -31,49 +31,36 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.hardware.Gamepad.*;
 
 
-@Autonomous(name="MY First Itriative OP", group="Iterative Opmode")
-//@Disabled
-public class MyFirstItrativeOP extends OpMode
+@TeleOp(name="testOpParham", group="Iterative Opmode");
+@Disabled
+public class testOpParham extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftDrive;
-    private DcMotor rightDrive;
-    double drive = -gamepad1.left_stick_y;
-    double turn  =  gamepad1.right_stick_x;
-    double leftPower = Range.clip(drive + turn, -1.0, 1.0);;
-    double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
-
+    double tgtpower = 0;
+    private DcMotor motortest;
     /*
      * Code to run ONCE when the driver hits INIT
      */
     @Override
     public void init() {
+
+
         telemetry.addData("Status", "Initialized");
+        hardwareMap.get(DcMotor.class, "motorTest");
 
-        leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
-        rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
 
-        leftDrive.setDirection(DcMotor.Direction.REVERSE);
     }
 
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
-    public void arcadedrive(){
-        double drive = -gamepad1.left_stick_y;
-        double turn  =  gamepad1.right_stick_x;
-        double leftPower = Range.clip(drive + turn, -1.0, 1.0);;
-        double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
-        rightDrive.setPower(rightPower);
-        leftDrive.setPower(leftPower);
-    }
     @Override
     public void init_loop() {
     }
@@ -91,11 +78,9 @@ public class MyFirstItrativeOP extends OpMode
      */
     @Override
     public void loop() {
-        arcadedrive();
-        telemetry.addData("left motor throttle indcator", leftDrive);
-        telemetry.addData("right motor throtle incator", rightDrive);
-        telemetry.addData("right power", rightPower);
-        telemetry.addData("left power", leftPower);
+        double tgtpower = -this.gamepad1.left_stick_y;
+        motortest.setPower(tgtpower);
+        telemetry.addData("Status", "Running");
 
     }
 
