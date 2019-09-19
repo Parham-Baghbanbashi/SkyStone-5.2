@@ -29,6 +29,7 @@ public class Automumustest extends OpMode {
         m4 = hardwareMap.dcMotor.get("m4");
         s1 = hardwareMap.servo.get("s1");
         s2 = hardwareMap.servo.get("s2");
+
         telemetry.addData("Status:", "Initialized");
         m1.setDirection(DcMotor.Direction.REVERSE);
         m3.setDirection(DcMotor.Direction.REVERSE);

@@ -22,9 +22,12 @@ public class TankDirve extends OpMode {
         m2 = hardwareMap.dcMotor.get("m2");
         m3 = hardwareMap.dcMotor.get("m3");
         m4 = hardwareMap.dcMotor.get("m4");
+
         s1 = hardwareMap.servo.get("s1");
         s2 = hardwareMap.servo.get("s2");
+
         telemetry.addData("Status:", "Initialized");
+
         m1.setDirection(DcMotor.Direction.REVERSE);
         m3.setDirection(DcMotor.Direction.REVERSE);
 
@@ -34,23 +37,29 @@ public class TankDirve extends OpMode {
     public void loop()
     {
         telemetry.addData("Status:", "Running");
+
         telemetry.addData("Rightmoter", m2.getPower());
         telemetry.addData("Leftmotor", m1.getPower());
+
         telemetry.addData("servo 1", s1.getPosition());
         telemetry.addData("servo2", s2.getPosition());
+
         double leftPower = -gamepad1.left_stick_y;
         double rightPower  =  gamepad1.right_stick_y;
 
         telemetry.addData("Yl", leftPower);
         telemetry.addData("YR", rightPower);
+
         m1.setPower(leftPower);
         m2.setPower(rightPower);
         m3.setPower(-rightPower);
         m4.setPower(-leftPower);
+
         if(gamepad1.y == true)
         {
             s1.setPosition(0);
         }
+
         if(gamepad1.a){
             s1.setPosition(0.5);
         }
@@ -58,6 +67,7 @@ public class TankDirve extends OpMode {
         if(gamepad1.b){
             s2.setPosition(0);
         }
+
         if(gamepad1.x){
             s2.setPosition(180);
         }
