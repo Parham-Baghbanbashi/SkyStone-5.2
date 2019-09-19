@@ -1,13 +1,13 @@
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp
-public class arcadedrive extends OpMode {
+public class TankDirve extends OpMode {
 
     DcMotor m1;
     DcMotor m2;
@@ -38,12 +38,11 @@ public class arcadedrive extends OpMode {
         telemetry.addData("Leftmotor", m1.getPower());
         telemetry.addData("servo 1", s1.getPosition());
         telemetry.addData("servo2", s2.getPosition());
-        double drive = -gamepad1.left_stick_y;
-        double turn  =  gamepad1.right_stick_x;
-        double leftPower = Range.clip(drive + turn, -1.0, 1.0) ;
-        double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
-        telemetry.addData("Y", drive);
-        telemetry.addData("x", turn);
+        double leftPower = -gamepad1.left_stick_y;
+        double rightPower  =  gamepad1.right_stick_y;
+
+        telemetry.addData("Yl", leftPower);
+        telemetry.addData("YR", rightPower);
         m1.setPower(leftPower);
         m2.setPower(rightPower);
         m3.setPower(-rightPower);
