@@ -1,28 +1,27 @@
 /**
 ----------------------------------------------------------------------------------------------------
 Name: ArcadeDrive
-Purpose: This program creates an arcade drive and adds servo control
+Purpose: This program creates an arcade drive and adds servo control these servos control
+ the robots platform locking mechanism
 
 
-Aurthor: Baghbanbashi, Parham
-         email: parhambagh@gmail.com
+Author: Baghbanbashi, Parham
+        email: parhambagh@gmail.com
 
 Date: 09/19/2019
-Version: 1.2.1
+Version: 1.2.2
 ----------------------------------------------------------------------------------------------------
 */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp
-public class arcadedrive extends OpMode {
+public class ArcadeDriveWithServos extends OpMode {
 
     DcMotor m1;
     DcMotor m2;
