@@ -115,15 +115,15 @@ public class arcadedrive extends OpMode {
 
         if(gamepad1.y == true)
         {
-            s1.setPosition(-0.5);
+            s1.setPosition(1.0);
             s2.setPosition(-0.5);
         }
 
         /** set servos positon to 0.5 if button a is presed
          */
         if(gamepad1.a){
-            s1.setPosition(1.0);
-            s2.setPosition(-1.0);
+            s1.setPosition(-0.5);
+            s2.setPosition(1.0);
         }
 
 
